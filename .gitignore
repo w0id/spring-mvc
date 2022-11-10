@@ -1,0 +1,8 @@
+/mvnw.cmd
+/mvnw
+/target/
+/.mvn/
+/.idea/
+/src/test/
+/src/main/resources/templates/lesson3/
+/src/main/java/lesson3/springmvc/

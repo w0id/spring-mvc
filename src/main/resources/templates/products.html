@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products</title>
+</head>
+<body>
+<h1>Список товаров</h1>
+<table cellspacing="0" border="1" cellpadding="5">
+    <tr style="font-size: small">
+        <th>ID</th>
+        <th>НАИМЕНОВАНИЕ</th>
+        <th>ЦЕНА</th>
+        <th>ССЫЛКА НА ТОВАР</th>
+    </tr>
+    <tr th:each="p : ${productList}">
+        <td th:text="${p.id}"/>
+        <td th:text="${p.name}"/>
+        <td th:text="${p.cost} + ' руб.'"/>
+        <td style="text-align: center">
+            <a th:href="@{/products/{id}(id=${p.id})}">Перейти</a>
+        </td>
+    </tr>
+</table>
+
+<h3 th:text="'Всего товаров: ' + ${productList.size()}"/>
+<p>
+<form method="post" th:action="@{/products}" th:object="${product}">
+    <input id="name" placeholder="Наименование товара" required type="text" th:field="*{name}"/>
+    <input id="cost" placeholder="Цена" required type="number" step="0.01" th:field="*{cost}"/>
+    <input type="submit" value="Добавить товар">
+</form>
+</body>
+</html>
